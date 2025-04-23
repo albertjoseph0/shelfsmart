@@ -138,7 +138,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/albertjoseph/project-code/shelf-smart-modern/shelf-smart/src/generated/prisma",
+      "value": "/Users/albertjoseph/project-code/shelf-smart/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -152,7 +152,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/albertjoseph/project-code/shelf-smart-modern/shelf-smart/prisma/schema.prisma",
+    "sourceFilePath": "/Users/albertjoseph/project-code/shelf-smart/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -166,11 +166,12 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlserver",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "sqlserver://shelfsmart-server.database.windows.net:1433;database=shelfsmart-database;user=shelfsmart-server-admin@shelfsmart-server;password=Action-Storm-Door-Desire-1;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30"
+        "value": null
       }
     }
   },
