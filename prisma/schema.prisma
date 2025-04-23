@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+// Define the Book model based on the books table in db.ts
+model Book {
+  id        String   @id @default(uuid()) @db.UniqueIdentifier
+  title     String   @db.NVarChar(255)
+  author    String?  @db.NVarChar(255)
+  isbn10    String?  @db.NVarChar(20)
+  isbn13    String?  @db.NVarChar(20)
+  dateAdded DateTime @default(now()) @db.DateTime
+  imageId   String?  @db.NVarChar(255)
+  userId    String   @db.NVarChar(255) // Clerk userId association
+
+  @@map("books") // Map to the existing 'books' table
+}
+
+// Define the Account model based on the Account table in db.ts
+model Account {
+  id               Int      @id @default(autoincrement())
+  userId           String   @unique @db.NVarChar(255)
+  createdAt        DateTime @default(now()) @db.DateTime2
+  updatedAt        DateTime @updatedAt @db.DateTime2
+  stripeCustomerId String?  @db.NVarChar(255)
+  package          String?  @db.NVarChar(255)
+  status           String   @default("INACTIVE") @db.NVarChar(255)
+
+  @@map("Account") // Map to the existing 'Account' table
+}
