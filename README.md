@@ -107,6 +107,14 @@ yarn dev
   npx prisma db push
   ```
 
+# Docker build
+docker build -t shelf-smart .  
+docker run -p 3000:3000 shelf-smart
+
+# bulk-load all your .env variables into current shell session so that Kamal can access them
+
+export $(grep -v '^#' .env | xargs)
+
 ## Usage
 
 1. **Upload an Image**: Click the "Select a photo of your bookshelf" button and choose an image of your bookshelf.
