@@ -30,8 +30,9 @@ registry:
   username: ftyugihoj
 
   # Always use an access token rather than real password (pulled from .kamal/secrets).
-  password: morpad-kupbid-mopxY1
-
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+    
 # Configure builder setup.
 builder:
   arch: amd64
