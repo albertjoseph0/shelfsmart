@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['randomuser.me'],
   },
+  output: "standalone",
   /* config options here */
   async redirects() {
     return process.env.NODE_ENV === 'production' ? [
