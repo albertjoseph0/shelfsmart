@@ -46,6 +46,7 @@ export async function POST(req: Request) {
       mode: 'subscription', // Assuming these are subscription plans
       success_url: successUrl,
       cancel_url: cancelUrl,
+      allow_promotion_codes: true, // Enable promo code entry on Stripe Checkout
       // Add subscription_data to pass metadata to the subscription object
       subscription_data: {
         metadata: {
