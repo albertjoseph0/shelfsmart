@@ -41,12 +41,24 @@ builder:
   #   RUBY_VERSION: <%= ENV["RBENV_VERSION"] || ENV["rvm_ruby_string"] || "#{RUBY_ENGINE}-#{RUBY_ENGINE_VERSION}" %>
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
-#
-# env:
-#   clear:
-#     DB_HOST: 192.168.0.2
-#   secret:
-#     - RAILS_MASTER_KEY
+env:
+  secret:
+    - DATABASE_URL
+    - OPENAI_API_KEY
+    - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+    - CLERK_SECRET_KEY
+    - CLERK_WEBHOOK_SIGNING_SECRET
+    - NEXT_PUBLIC_BASE_URL
+    - STRIPE_PUBLIC_KEY
+    - STRIPE_SECRET_KEY
+    - STRIPE_WEBHOOK_SECRET
+    - NEXT_PUBLIC_STRIPE_SAVANT_PRICE_ID
+    - NEXT_PUBLIC_STRIPE_SCHOLAR_PRICE_ID
+    - NEXT_PUBLIC_STRIPE_STARTER_PRICE_ID
+    - NEXT_PUBLIC_STRIPE_MANAGE_SUBSCRIPTION_URL
+    - NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL
+    - NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL
+    - KAMAL_REGISTRY_PASSWORD
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal app logs -r job" will tail logs from the first server in the job section.
