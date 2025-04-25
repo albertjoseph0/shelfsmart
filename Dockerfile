@@ -44,21 +44,23 @@ RUN --mount=type=secret,id=DATABASE_URL \
   --mount=type=secret,id=NEXT_PUBLIC_STRIPE_MANAGE_SUBSCRIPTION_URL \
   --mount=type=secret,id=NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL \
   --mount=type=secret,id=NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL \
-  export DATABASE_URL=$(cat /run/secrets/DATABASE_URL) && \
-  export OPENAI_API_KEY=$(cat /run/secrets/OPENAI_API_KEY) && \
-  export NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$(cat /run/secrets/NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) && \
-  export CLERK_SECRET_KEY=$(cat /run/secrets/CLERK_SECRET_KEY) && \
-  export CLERK_WEBHOOK_SIGNING_SECRET=$(cat /run/secrets/CLERK_WEBHOOK_SIGNING_SECRET) && \
-  export NEXT_PUBLIC_BASE_URL=$(cat /run/secrets/NEXT_PUBLIC_BASE_URL) && \
-  export STRIPE_PUBLIC_KEY=$(cat /run/secrets/STRIPE_PUBLIC_KEY) && \
-  export STRIPE_SECRET_KEY=$(cat /run/secrets/STRIPE_SECRET_KEY) && \
-  export STRIPE_WEBHOOK_SECRET=$(cat /run/secrets/STRIPE_WEBHOOK_SECRET) && \
-  export NEXT_PUBLIC_STRIPE_SAVANT_PRICE_ID=$(cat /run/secrets/NEXT_PUBLIC_STRIPE_SAVANT_PRICE_ID) && \
-  export NEXT_PUBLIC_STRIPE_SCHOLAR_PRICE_ID=$(cat /run/secrets/NEXT_PUBLIC_STRIPE_SCHOLAR_PRICE_ID) && \
-  export NEXT_PUBLIC_STRIPE_STARTER_PRICE_ID=$(cat /run/secrets/NEXT_PUBLIC_STRIPE_STARTER_PRICE_ID) && \
-  export NEXT_PUBLIC_STRIPE_MANAGE_SUBSCRIPTION_URL=$(cat /run/secrets/NEXT_PUBLIC_STRIPE_MANAGE_SUBSCRIPTION_URL) && \
-  export NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL=$(cat /run/secrets/NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL) && \
-  export NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL=$(cat /run/secrets/NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL) && \
+  set -a && \
+  [ -f /run/secrets/DATABASE_URL ] && export DATABASE_URL=$(cat /run/secrets/DATABASE_URL); \
+  [ -f /run/secrets/OPENAI_API_KEY ] && export OPENAI_API_KEY=$(cat /run/secrets/OPENAI_API_KEY); \
+  [ -f /run/secrets/NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ] && export NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$(cat /run/secrets/NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY); \
+  [ -f /run/secrets/CLERK_SECRET_KEY ] && export CLERK_SECRET_KEY=$(cat /run/secrets/CLERK_SECRET_KEY); \
+  [ -f /run/secrets/CLERK_WEBHOOK_SIGNING_SECRET ] && export CLERK_WEBHOOK_SIGNING_SECRET=$(cat /run/secrets/CLERK_WEBHOOK_SIGNING_SECRET); \
+  [ -f /run/secrets/NEXT_PUBLIC_BASE_URL ] && export NEXT_PUBLIC_BASE_URL=$(cat /run/secrets/NEXT_PUBLIC_BASE_URL); \
+  [ -f /run/secrets/STRIPE_PUBLIC_KEY ] && export STRIPE_PUBLIC_KEY=$(cat /run/secrets/STRIPE_PUBLIC_KEY); \
+  [ -f /run/secrets/STRIPE_SECRET_KEY ] && export STRIPE_SECRET_KEY=$(cat /run/secrets/STRIPE_SECRET_KEY); \
+  [ -f /run/secrets/STRIPE_WEBHOOK_SECRET ] && export STRIPE_WEBHOOK_SECRET=$(cat /run/secrets/STRIPE_WEBHOOK_SECRET); \
+  [ -f /run/secrets/NEXT_PUBLIC_STRIPE_SAVANT_PRICE_ID ] && export NEXT_PUBLIC_STRIPE_SAVANT_PRICE_ID=$(cat /run/secrets/NEXT_PUBLIC_STRIPE_SAVANT_PRICE_ID); \
+  [ -f /run/secrets/NEXT_PUBLIC_STRIPE_SCHOLAR_PRICE_ID ] && export NEXT_PUBLIC_STRIPE_SCHOLAR_PRICE_ID=$(cat /run/secrets/NEXT_PUBLIC_STRIPE_SCHOLAR_PRICE_ID); \
+  [ -f /run/secrets/NEXT_PUBLIC_STRIPE_STARTER_PRICE_ID ] && export NEXT_PUBLIC_STRIPE_STARTER_PRICE_ID=$(cat /run/secrets/NEXT_PUBLIC_STRIPE_STARTER_PRICE_ID); \
+  [ -f /run/secrets/NEXT_PUBLIC_STRIPE_MANAGE_SUBSCRIPTION_URL ] && export NEXT_PUBLIC_STRIPE_MANAGE_SUBSCRIPTION_URL=$(cat /run/secrets/NEXT_PUBLIC_STRIPE_MANAGE_SUBSCRIPTION_URL); \
+  [ -f /run/secrets/NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL ] && export NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL=$(cat /run/secrets/NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL); \
+  [ -f /run/secrets/NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL ] && export NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL=$(cat /run/secrets/NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL); \
+  set +a && \
   if [ -f yarn.lock ]; then yarn run build; \
   elif [ -f package-lock.json ]; then npm run build; \
   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
