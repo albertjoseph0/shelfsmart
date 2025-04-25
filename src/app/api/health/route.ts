@@ -5,7 +5,7 @@ export async function GET() {
   try {
     // If you want to check DB, external services, etc., do it here
     return new NextResponse('OK', { status: 200 });
-  } catch (err) {
+  } catch {
     return new NextResponse('Unhealthy', { status: 500 });
   }
 } 
