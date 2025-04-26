@@ -93,7 +93,7 @@ export default function LandingPage() {
             </button>
           </div>
           <div className="md:w-1/2 flex justify-center">
-            <div className="relative w-full max-w-[32.2rem] h-[23rem] bg-gray-200 rounded-lg shadow-lg">
+            <div className="relative w-full max-w-[32.2rem] h-48 sm:h-[23rem] bg-gray-200 rounded-lg shadow-lg">
               {/* Hero image: Bookshelf to CSV demo */}
               <Image 
                 src="/bookshelf-to-csv-demo.png" 
